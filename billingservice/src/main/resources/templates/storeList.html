@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Store List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 50px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Store List</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Localities</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="store : ${stores}">
+                    <td th:text="${store.name}"></td>
+                    <td th:text="${store.phoneNumber}"></td>
+                    <td th:text="${#strings.arrayJoin(store.localities, ', ')}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

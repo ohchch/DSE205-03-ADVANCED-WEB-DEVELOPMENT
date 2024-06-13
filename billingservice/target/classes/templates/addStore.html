@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin: 50px;
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+        .button:hover {
+            background-color: #3e8e41;
+        }
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        #response, #paymentResponse {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add a New Store</h1>
+        <form id="storeForm" th:action="@{/stores/add}" th:object="${store}" th:method="post">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" th:field="*{name}"><br>
+            <label for="phoneNumber">Phone Number:</label><br>
+            <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}"><br>
+            <label for="localities">Localities:</label><br>
+            <input type="text" id="localities" name="localities" th:field="*{localities}"><br><br>
+            <input type="submit" value="Add Store" class="button">
+        </form>
+        <br>
+        <a th:href="@{/stores}" class="button">View Stores</a>
+        <p id="response" th:text="${message}"></p>
+    </div>
+</body>
+</html>

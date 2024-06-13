@@ -1,46 +1,44 @@
 package com.example.billingservice.stores;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-
-import jakarta.persistence.Table;
-
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import java.util.List;
+import jakarta.persistence.*;
 import java.util.Objects;
 
-
 @Entity
-@Table (name="store")
+@Table(name = "store")
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // 主键
+    private Long id; // Primary Key
 
-    private String name; // 商店名称
-    private String phoneNumber; // 商店电话号码
+    private String name; // Store Name
+    private String phoneNumber; // Store Phone Number
+    private String email; // Store Email
 
-    //@ElementCollection
-    //@CollectionTable(name = "store_localities", joinColumns = @JoinColumn(name = "store_id")
-    @Column(name = "locality")
-    private List<String> localities; // 商店服务的地区或区域列表
+    private String unitNumber; // Unit Number, Floor, Building Name
+    private String streetName; // Street Name
+    private String residentialArea; // Residential Area or Suburb Name
+    private String postalCode; // Postal Code
+    private String city; // City
+    private String state; // State
+    private String country = "Malaysia"; // Country
 
-    // 默认构造函数
+    // Default constructor
     public Store() {}
 
-    // 参数化构造函数
-    public Store(String name, String phoneNumber, List<String> localities) {
+    // Parameterized constructor
+    public Store(String name, String phoneNumber, String email, String unitNumber, String streetName, String residentialArea, String postalCode, String city, String state) {
         this.name = name;
         this.phoneNumber = phoneNumber;
-        this.localities = localities;
+        this.email = email;
+        this.unitNumber = unitNumber;
+        this.streetName = streetName;
+        this.residentialArea = residentialArea;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.state = state;
     }
 
-    // id 的 getter 和 setter 方法
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -49,7 +47,6 @@ public class Store {
         this.id = id;
     }
 
-    // name 的 getter 和 setter 方法
     public String getName() {
         return name;
     }
@@ -58,7 +55,6 @@ public class Store {
         this.name = name;
     }
 
-    // phoneNumber 的 getter 和 setter 方法
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -67,16 +63,71 @@ public class Store {
         this.phoneNumber = phoneNumber;
     }
 
-    // localities 的 getter 和 setter 方法
-    public List<String> getLocalities() {
-        return localities;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLocalities(List<String> localities) {
-        this.localities = localities;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    // equals 方法重写
+    public String getUnitNumber() {
+        return unitNumber;
+    }
+
+    public void setUnitNumber(String unitNumber) {
+        this.unitNumber = unitNumber;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public String getResidentialArea() {
+        return residentialArea;
+    }
+
+    public void setResidentialArea(String residentialArea) {
+        this.residentialArea = residentialArea;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    // equals method override
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,23 +136,37 @@ public class Store {
         return Objects.equals(id, store.id) &&
                 Objects.equals(name, store.name) &&
                 Objects.equals(phoneNumber, store.phoneNumber) &&
-                Objects.equals(localities, store.localities);
+                Objects.equals(email, store.email) &&
+                Objects.equals(unitNumber, store.unitNumber) &&
+                Objects.equals(streetName, store.streetName) &&
+                Objects.equals(residentialArea, store.residentialArea) &&
+                Objects.equals(postalCode, store.postalCode) &&
+                Objects.equals(city, store.city) &&
+                Objects.equals(state, store.state) &&
+                Objects.equals(country, store.country);
     }
 
-    // hashCode 方法重写
+    // hashCode method override
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, phoneNumber, localities);
+        return Objects.hash(id, name, phoneNumber, email, unitNumber, streetName, residentialArea, postalCode, city, state, country);
     }
 
-    // toString 方法重写
+    // toString method override
     @Override
     public String toString() {
         return "Store{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", localities=" + localities +
+                ", email='" + email + '\'' +
+                ", unitNumber='" + unitNumber + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", residentialArea='" + residentialArea + '\'' +
+                ", postalCode='" + postalCode + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
                 '}';
     }
 }
